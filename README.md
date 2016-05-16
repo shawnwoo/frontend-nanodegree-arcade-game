@@ -1,5 +1,10 @@
-frontend-nanodegree-arcade-game
-===============================
+#frontend-nanodegree-arcade-game project
+
+##1. How to run
+
+##2. Game control
+
+##3. Reference
 
 Students should use this [rubric](https://www.udacity.com/course/viewer/#!/c-nd001/l-2696458597/m-2687128535) for self-checking their submission.
 
