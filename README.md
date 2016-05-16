@@ -7,14 +7,14 @@
 ##Game control
 Only need keyboard for this game.
 
-**LEFT**:Move player to left
-**RIGHT**: Move player to right
-**UP**: Move player to up
-**DOWN**: Move player to down
+**LEFT**:Move player to left.
+**RIGHT**: Move player to right.
+**UP**: Move player to up.
+**DOWN**: Move player to down.
 
 ##End of game
 
-**Win the game**: Player reachs the river
+**Win the game**: Player reachs the river.
 **Lose the game**: Player collided with any vehicles.
 
 ##Reference
