@@ -1,10 +1,23 @@
-#frontend-nanodegree-arcade-game project
+#Udacity frontend-nanodegree-arcade-game project
 
-##1. How to run
+##How to run
+1. Clone code from gitHub [link](https://github.com/shawnwoo/frontend-nanodegree-arcade-game)
+2. Open index.html from any browser.
 
-##2. Game control
+##Game control
+Only need keyboard for this game.
 
-##3. Reference
+**LEFT**:Move player to left
+**RIGHT**: Move player to right
+**UP**: Move player to up
+**DOWN**: Move player to down
+
+##End of game
+
+**Win the game**: Player reachs the river
+**Lose the game**: Player collided with any vehicles.
+
+##Reference
 
 Students should use this [rubric](https://www.udacity.com/course/viewer/#!/c-nd001/l-2696458597/m-2687128535) for self-checking their submission.
 
