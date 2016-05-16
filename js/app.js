@@ -23,7 +23,7 @@ var PLAYER_AREA_BOUNDARY_RIGHT_X = 405;
 var PLAYER_AREA_BOUNDARY_RIGHT_Y = 400;
 
 //Define moving distance for one key press
-var PLAYER_MOVING_DISTANCE = 50;
+var PLAYER_MOVING_DISTANCE = 83;
 
 //Use edge of the river as end line
 var PLAYER_END_LINE = 20;
@@ -31,10 +31,19 @@ var PLAYER_END_LINE = 20;
 //Define the collision radius
 var COLLISION_RADIUS = 40;
 
-
+//Charater object in this game
+var Character = function(){
+    this.x = 0;
+    this.y = 0;
+    this.sprite = " ";
+};
 
 // Enemies our player must avoid
-var Enemy = function() {
+//
+Enemy.prototype = new Character();
+Enemy.prototype.constructor = Enemy;
+
+function Enemy() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -47,7 +56,7 @@ var Enemy = function() {
 
     //generate a random speed of enemy
     this.speed = generateRandomNumber(ENEMY_SPEED_LOWEST, ENEMY_SPEED_HIGHEST);
-};
+}
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -72,13 +81,16 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function(){
+
+Player.prototype = new Character();
+Player.prototype.constructor = Player;
+function Player() {
 
     this.sprite = 'images/char-boy.png';
     this.x = PLAYER_INIT_X;
     this.y = PLAYER_INIT_Y;
 
-};
+}
 
 Player.prototype.update = function(dt){
     //reset game when user reach the river
@@ -86,30 +98,30 @@ Player.prototype.update = function(dt){
     {
         alert("You WIN!");
         newGame();
-    };
+    }
 
     //stop moving when user reach the edge
     if (this.x <= PLAYER_AREA_BOUNDARY_LEFT_X){
         this.x = PLAYER_AREA_BOUNDARY_LEFT_X;
-    };
+    }
 
     if (this.y <= PLAYER_AREA_BOUNDARY_LEFT_Y ){
         this.y= PLAYER_AREA_BOUNDARY_LEFT_Y;
-    };
+    }
 
     if (this.x >= PLAYER_AREA_BOUNDARY_RIGHT_X){
         this.x = PLAYER_AREA_BOUNDARY_RIGHT_X;
-    };
+    }
 
     if (this.y >= PLAYER_AREA_BOUNDARY_RIGHT_Y){
         this.y = PLAYER_AREA_BOUNDARY_RIGHT_Y;
-    };
+    }
 
     //lose game if collision happens
-    if (checkCollisions(allEnemies,this)){
+    if (this.checkCollisions(allEnemies,this)){
         alert("You lose!");
         newGame();
-    };
+    }
 
 };
 
@@ -131,8 +143,18 @@ Player.prototype.handleInput = function(key){
         case "down":
             this.y = this.y + PLAYER_MOVING_DISTANCE;
             break;
-    };
+    }
 
+};
+
+Player.prototype.checkCollisions = function(enemies, player){
+    var enemyNumber = enemies.length;
+
+    for (var i = 0 ; i < enemyNumber; i++){
+        if (isCollided(enemies[i],player)) {
+            return true;
+        }
+    }
 };
 
 var generateRandomNumber = function (start, end){
@@ -150,7 +172,7 @@ var generateEnymies = function (number){
     for(var i = 0; i < number; i++){
         var newEnemy = new Enemy();
         allEnemies.push(newEnemy);
-    };
+    }
 };
 
 var isCollided = function(obj1, obj2){
@@ -160,18 +182,10 @@ var isCollided = function(obj1, obj2){
 
     if ((distanceX <= COLLISION_RADIUS) && (distanceY <= COLLISION_RADIUS)) {
         return true;
-    };
+    }
 };
 
-var checkCollisions = function(enemies, player){
-    var enemyNumber = enemies.length;
 
-    for (var i = 0 ; i < enemyNumber; i++){
-        if (isCollided(enemies[i],player)) {
-            return true;
-        };
-    };
-};
 
 var newGame = function(){
     allEnemies = [];
